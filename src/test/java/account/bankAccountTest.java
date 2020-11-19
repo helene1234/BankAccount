@@ -3,14 +3,12 @@ package account;
 import com.KataBankAccount.domain.Account;
 
 import com.KataBankAccount.domain.Statement;
-import com.KataBankAccount.domain.Transaction;
 import com.KataBankAccount.services.AccountService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +19,7 @@ public class bankAccountTest {
      AccountService accountService=new AccountService();
 
 
-     @BeforeEach
+  @BeforeEach
      public void init() {
      account = new Account(1L, 0, new ArrayList<Statement>());
      }
@@ -50,4 +48,4 @@ public class bankAccountTest {
         assertThat(oldBalance-result).isEqualTo(1000);
     }
 
-    }
+}
