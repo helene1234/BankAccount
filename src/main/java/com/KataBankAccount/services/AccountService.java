@@ -12,6 +12,7 @@ public class AccountService  implements IAccount {
         double result=account.getBalance();
         account.setBalance(result+amount);
     }
-
+    public void withdrawal(double amount, Account account) {
+    }
 
 }
