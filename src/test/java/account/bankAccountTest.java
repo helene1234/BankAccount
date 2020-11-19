@@ -30,7 +30,7 @@ public class bankAccountTest {
         assertThat(result-oldBalance).isEqualTo(1000);
     }
     @Test
-    public void when_1000_are_withdrawed_then_account_balance_decreases_by_1000() {
+    public void when_1000_are_withdrawed_then_account_balance_decreases_by_1000() throws IllegalArgumentException {
 
         //ARRANGE
         account = new Account(1L, 0);

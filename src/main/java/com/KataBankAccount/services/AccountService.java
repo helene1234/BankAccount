@@ -12,7 +12,11 @@ public class AccountService  implements IAccount {
         double result=account.getBalance();
         account.setBalance(result+amount);
     }
-    public void withdrawal(double amount, Account account) {
+    public void withdrawal(double amount, Account account) throws IllegalArgumentException{
+        if (amount<0)
+        { throw new IllegalArgumentException("Only Positive Numbers & no Letters Please!");}
+        double result=account.getBalance();
+        account.setBalance(Math.abs(result-amount));
     }
 
 }
