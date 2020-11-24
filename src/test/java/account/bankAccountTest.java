@@ -4,6 +4,7 @@ import com.KataBankAccount.domain.Account;
 
 import com.KataBankAccount.domain.Statement;
 import com.KataBankAccount.services.AccountService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class bankAccountTest {
     }
 
     @Test
-    public void when_make_three_transactions_then_size_history_account_should_equals_three() {
+    public void when_make_three_transactions_then_size_history_account_should_equals_three() throws IllegalArgumentException {
 
       // ACT
       accountService.deposit(1000, account);
@@ -61,7 +62,7 @@ public class bankAccountTest {
     }
 
     @Test
-    public void when_1000_are_deposited_and_500_are_withdrawed_amount_then_account_balance_increases_by_500() {
+    public void when_1000_are_deposited_and_500_are_withdrawed_amount_then_account_balance_increases_by_500() throws IllegalArgumentException {
       //ACT
       accountService.deposit(1000, account);
       accountService.withdrawal(500, account);
@@ -70,6 +71,18 @@ public class bankAccountTest {
       assertThat(account.getBalance()).isEqualTo(500);
 
     }
+    @Test
+    public void when_negative_amount_is_supplied_for_deposit_then_should_throw_exception() throws IllegalArgumentException {
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      accountService.deposit(-1000, account);
+    });
+  }
 
+    @Test
+    public void when_negative_amount_is_supplied_for_withdraw_then_should_throw_exception() throws IllegalArgumentException {
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      accountService.withdrawal(-1000, account);
+    });
+  }
 
   }
