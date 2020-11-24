@@ -20,7 +20,7 @@ public class KataBankAccountApplication {
             accountService.deposit(1500,account);
             accountService.deposit(1500,account);
             accountService.withdrawal(1500,account);
-            accountService.print();
+            accountService.print(account);
 
         } catch (IllegalArgumentException e) {
             System.out.println("Only Positive Numbers & no Letters Please!");

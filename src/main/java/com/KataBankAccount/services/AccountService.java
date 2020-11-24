@@ -40,8 +40,8 @@ public class AccountService  implements IAccount {
         account.setHistory(history);
     }
     @Override
-    public void print() {
-        history.forEach( statement->System.out.format("%s %s %s %s\n",
+    public void print(Account account) {
+        account.getHistory().forEach( statement->System.out.format("%s %s %s %s\n",
                 statement.getOperation().getType(),
                 statement.getOperation().getDate(),
                 statement.getOperation().getAmount(),

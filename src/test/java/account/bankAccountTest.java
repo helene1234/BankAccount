@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class bankAccountTest {
@@ -40,13 +39,37 @@ public class bankAccountTest {
     @Test
     public void when_1000_are_withdrawed_then_account_balance_decreases_by_1000() throws IllegalArgumentException {
 
-        //ACT
-        double oldBalance = account.getBalance();
-        accountService.withdrawal(1000, account);
-        double result=account.getBalance();
+      //ACT
+      double oldBalance = account.getBalance();
+      accountService.withdrawal(1000, account);
+      double result = account.getBalance();
 
-        //ASSERT
-        assertThat(oldBalance-result).isEqualTo(1000);
+      //ASSERT
+      assertThat(oldBalance - result).isEqualTo(1000);
     }
 
-}
+    @Test
+    public void when_make_three_transactions_then_size_history_account_should_equals_three() {
+
+      // ACT
+      accountService.deposit(1000, account);
+      accountService.withdrawal(500, account);
+      accountService.deposit(300, account);
+
+      //ASSERT
+      assertThat(account.getHistory().size()).isEqualTo(3);
+    }
+
+    @Test
+    public void when_1000_are_deposited_and_500_are_withdrawed_amount_then_account_balance_increases_by_500() {
+      //ACT
+      accountService.deposit(1000, account);
+      accountService.withdrawal(500, account);
+
+      //ASSERT
+      assertThat(account.getBalance()).isEqualTo(500);
+
+    }
+
+
+  }
