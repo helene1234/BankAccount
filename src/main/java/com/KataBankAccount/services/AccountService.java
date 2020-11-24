@@ -37,6 +37,7 @@ public class AccountService  implements IAccount {
         Transaction operation = new Transaction(type, new Date(), value);
         Statement statement = new Statement(operation, account.getBalance());
         history.add(statement);
+        account.setHistory(history);
     }
     @Override
     public void print() {
